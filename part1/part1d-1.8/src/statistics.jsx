@@ -1,10 +1,19 @@
 import React from 'react';
 
+
+const StatisticLine = ({ text, value }) => {
+  return (
+    <p>{text}: {value}</p>
+  );
+};
+
+
+
 const Statistics = ({ good, neutral, bad, total, average, positive }) => {
   if (total === 0) {
     return <div>
         <h2>
-            Statistics
+            No feedback given
         </h2>
     </div>;
   }
@@ -12,12 +21,12 @@ const Statistics = ({ good, neutral, bad, total, average, positive }) => {
   return (
     <div>
       <h2>Statistics</h2>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Total: {total}</p>
-      <p>Average: {average.toFixed(2)}</p>
-      <p>Positive: {positive.toFixed(2)}%</p>
+      <StatisticLine text="Good" value={good} />
+      <StatisticLine text="Neutral" value={neutral} />
+      <StatisticLine text="Bad" value={bad} />
+      <StatisticLine text="Total" value={total} />
+      <StatisticLine text="Average" value={average.toFixed(2)} />
+      <StatisticLine text="Positive" value={positive.toFixed(2) + "%"} />
     </div>
   );
 };
