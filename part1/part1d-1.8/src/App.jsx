@@ -1,125 +1,39 @@
 import { useState } from 'react'
-import Statistics from './statistics'
-
-
-/* const History = ({allClicks}) => {
-  if (allClicks.length === 0) {  
-  return<div>no feedback given</div>
-
-}  
-
-return (
-    <div>
-      {allClicks.join(' ')}
-    </div>
-  );
-} */
-
-const Button = ({ handleClick, text }) => (
-  <button onClick={handleClick}>
-    {text}
-  </button>
-)
-
-
 
 const App = () => {
-  const [good, setGood] = useState(0)
-  const [neutral, setNeutral] = useState(0)
-  const [bad, setBad] = useState(0)
-  const [total, setTotal] = useState(0)
-  const [average, setAverage] = useState(0)
-  const [positive, setPositive] = useState(0)
 
-  const handleGoodClick = () => 
-    {
-
-      const updateGood = good + 1;
-    const newTotal=total + 1;
-    const newPositive = (updateGood / total) * 100 || 0;
-    const newAverage = (updateGood - bad) / total || 0;
-    
-    setGood(updateGood);
-    setTotal(newTotal);
-    setPositive(newPositive);
-    setAverage(newAverage);
-    
-  };
-
-  const handleNeutralClick = () => {
-    const updateNeutral = neutral + 1;
-    const newTotal=total + 1;
-
-    const newPositive = (good / total) * 100 || 0;
-    const newAverage = (good - bad) / total || 0;
-    
-    
-    setNeutral(updateNeutral);
-    setTotal(newTotal);
-    setPositive(newPositive);
-    setAverage(newAverage);
-  };
-
-  const handleBadClick = () => {
-    const updateBad = bad + 1;
-    const newTotal=total + 1;
-
-    
-    const newPositive = (good / newTotal) * 100 || 0;
-    const newAverage = (good - bad) / newTotal || 0;
-    
-    setBad(updateBad);
-    setTotal(newTotal);
-    setPositive(newPositive);
-    setAverage(newAverage);
+  const anecdotes = [
+    'If it hurts, do it more often.',
+    'Adding manpower to a late software project makes it later!',
+    'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
+    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+    'Premature optimization is the root of all evil.',
+    'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
+    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
+    'The only way to go fast, is to go well.'
+  ]
+   
+  const [selected, setSelected] = useState(0);
 
 
-  };
+  /* const addRandomNumber = () => {
+    setSelected(selected => [ ...selected, Math.random() * anecdotes.length]);
+  }; */
 
-  
-
-
+const addRandomNumber = () => {
+  const randomAnecdotes = Math.floor(Math.random()*anecdotes.length);
+  setSelected(randomAnecdotes)
+}
 
   return (
-    <div>
-
-      <h1>give feedback</h1>
-      <Button handleClick={handleGoodClick} text='good' />
-      <Button handleClick={handleNeutralClick} text='neutral' />
-      <Button handleClick={handleBadClick} text='bad' />
-
-      {/* <h1>statistics</h1>
-      <p>
-        Good:{good}
-      </p>
-
-      <p>
-        neutral:{neutral}
-      </p>
-      <p>
-        bad {bad}
-
-      </p>
-
-      <p>
-        Total: {total}
-      </p>
-     <p>
-     </p>
-     <p>average: {average.toFixed(2)}</p>
-     <p>positive: {positive.toFixed(2)}%</p> */}
-      <Statistics 
-      good={good} 
-      neutral={neutral} 
-      bad={bad} 
-      total={total} 
-      average={average} 
-      positive={positive} 
-    />
-    
+    <div >
+     
+      <div>     
+         {anecdotes[selected]}
+      </div>
+      <button onClick={() => addRandomNumber()}>next anecdote</button>
     </div>
+  );
+}
 
-  )
-} 
-
-  export default App 
+export default App
