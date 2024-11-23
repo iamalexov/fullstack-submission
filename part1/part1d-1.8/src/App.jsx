@@ -2,6 +2,9 @@ import { useState } from 'react'
 
 const App = () => {
 
+  const [selected, setSelected] = useState(0);
+
+
   const anecdotes = [
     'If it hurts, do it more often.',
     'Adding manpower to a late software project makes it later!',
@@ -13,27 +16,46 @@ const App = () => {
     'The only way to go fast, is to go well.'
   ]
    
-  const [selected, setSelected] = useState(0);
 
 
-  /* const addRandomNumber = () => {
-    setSelected(selected => [ ...selected, Math.random() * anecdotes.length]);
-  }; */
+
 
 const addRandomNumber = () => {
   const randomAnecdotes = Math.floor(Math.random()*anecdotes.length);
   setSelected(randomAnecdotes)
 }
 
-  return (
+
+
+
+const [votes, setVotes] = useState(new Array(anecdotes.length).fill(0).fill(0))
+
+const handleVote =() => {
+  const updateVotes = [...votes];
+
+  updateVotes[selected] += 1;
+
+  setVotes(updateVotes);
+};
+
+return (
     <div >
      
-      <div>     
+      <div >     
          {anecdotes[selected]}
       </div>
+        
       <button onClick={() => addRandomNumber()}>next anecdote</button>
-    </div>
-  );
-}
+<div>
+
+
+  has {votes[selected]} votes
+  </div>
+
+      <button  onClick={() => handleVote()}>vote</button>
+      </div>
+
+);
+};
 
 export default App
