@@ -38,8 +38,8 @@ const App = () => {
     setVotes(updateVotes);
   };
 
-  const sortHighestVotes = Math.max(...votes) 
-  const anecdoteWithHighestVotes = votes.indexOf(sortHighestVotes)
+  const highestVotes = Math.max(...votes) 
+  const anecdoteWithHighestVotes = votes.indexOf(highestVotes)
    return (
     <div >
       <h1>
@@ -62,7 +62,7 @@ const App = () => {
 
       {anecdotes[anecdoteWithHighestVotes]}
       <div>
-      has {sortHighestVotes}votes
+      has {highestVotes}votes
       </div>
     </div>
 
