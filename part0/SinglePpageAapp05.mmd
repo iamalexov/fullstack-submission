@@ -1,0 +1,12 @@
+sequenceDiagram
+    actor user
+    participant browser
+    participant server
+    
+    user->>browser:visit
+    activate browser
+    browser-->>server:https:POST https//studies.cs.helsinki.fi/exampleapp/spa 
+    deactivate browser
+    
+
+    server-->>browser:successfull{message}
